@@ -24,3 +24,15 @@ The issue has a specific expected outcome: one integration test should exercise 
 **Setup confirmation:** [x] App runs locally at localhost:5173
 
 **Cohort ledger:** [x] Issue added to cohort ledger
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** https://github.com/drmitte7/pathreview/commit/078560a9f44f23893eea3a848d7f160ff83b5648
+
+**Reproduction summary:**
+I reproduced the issue by confirming that the `tests/integration` directory contains only `__init__.py` and that `tests/integration/test_rag_pipeline.py` is missing. I also confirmed that PathReview has separate unit tests for RAG components but no integration test that runs retrieval, reranking, generation, and response parsing as one complete workflow.
+
+**PLAN.md link:** https://github.com/drmitte7/pathreview/blob/test/38-rag-pipeline-integration-test/PLAN.md
+
+**Blockers or open questions:**
+I still need to confirm whether “reranking” in issue #38 refers to the score blending performed by `HybridRetriever`, the separate `RelevanceScorer`, or both. I also need to confirm whether the expected mock LLM approach uses an existing provider abstraction or patches the OpenAI-compatible client call in `ReviewGenerator`.
