@@ -27,7 +27,7 @@ The issue has a specific expected outcome: one integration test should exercise 
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** https://github.com/drmitte7/pathreview/commit/078560a9f44f23893eea3a848d7f160ff83b5648
+**Reproduction commit link:** https://github.com/drmitte7/pathreview/commit/14d7862ee37839ad64fa147b7c73ddee71905d19
 
 **Reproduction summary:**
 I reproduced the issue by confirming that the `tests/integration` directory contains only `__init__.py` and that `tests/integration/test_rag_pipeline.py` is missing. I also confirmed that PathReview has separate unit tests for RAG components but no integration test that runs retrieval, reranking, generation, and response parsing as one complete workflow.
