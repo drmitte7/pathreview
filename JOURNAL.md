@@ -36,3 +36,16 @@ I reproduced the issue by confirming that the `tests/integration` directory cont
 
 **Blockers or open questions:**
 I still need to confirm whether “reranking” in issue #38 refers to the score blending performed by `HybridRetriever`, the separate `RelevanceScorer`, or both. I also need to confirm whether the expected mock LLM approach uses an existing provider abstraction or patches the OpenAI-compatible client call in `ReviewGenerator`.
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+I created `tests/integration/test_rag_pipeline.py` and implemented the main workflow from my solution plan. The test creates deterministic document chunks, indexes them for vector and keyword retrieval, runs a representative query through `HybridRetriever`, and verifies that the relevant result ranks first. It also replaces the external LLM request with a deterministic mock, confirms that retrieved context reaches the generation prompt, and verifies that the response is parsed into structured feedback. The targeted integration test passed successfully on repeated runs.
+
+**Next steps:**
+I will run `make check` and `make test-unit`, compare the results with the failures observed before implementation, and confirm that my change introduces no new failures. I will then open a draft pull request, request peer or mentor feedback, address relevant feedback, and complete Check-in 2 with the final PR link and verification results.
+
+**Blockers:**
+The targeted integration test has no current blockers. Mypy reports three pre-existing type errors in `rag/retriever/vector_store.py`, `rag/retriever/keyword_search.py`, and `rag/generator/output_parser.py`. These files were not modified by this contribution.
