@@ -50,28 +50,20 @@ I will run `make check` and `make test-unit`, compare the results with the failu
 **Blockers:**
 The targeted integration test has no current blockers. Mypy reports three pre-existing type errors in `rag/retriever/vector_store.py`, `rag/retriever/keyword_search.py`, and `rag/generator/output_parser.py`. These files were not modified by this contribution.
 
-### Check-in 2 (final)
+### Check-in 2 (end of week)
 
-**Pull request:**
-https://github.com/ascherj/pathreview/pull/586
+**PR link:** https://github.com/ascherj/pathreview/pull/586
 
-**Branch:**
-`test/38-rag-pipeline-integration-test`
+**Branch:** `test/38-rag-pipeline-integration-test`
 
-**Implementation completed:**
+**What you built:**
 I added `tests/integration/test_rag_pipeline.py`, which tests the full RAG workflow from retrieval and hybrid reranking through mocked LLM generation and structured output parsing.
 
-**Testing results:**
-- Targeted integration test: 1 passed
-- Ruff check on the new test file: passed
-- Black check on the new test file: passed
-- Full repository Ruff check: 182 pre-existing errors
-- Full unit-test suite: 375 passed and 53 pre-existing failures
-- The same full-suite results were reproduced on `upstream/main`, confirming that this branch introduces no new failures.
+**Tests added or updated:**
+I added `tests/integration/test_rag_pipeline.py`. It verifies vector and BM25 retrieval, hybrid reranking, mocked LLM generation, prompt context, and structured output parsing. The targeted integration test passes.
 
-**Peer or mentor feedback:**
-I requested review through the pull request, but no peer or mentor review was received before the submission deadline.
+**Self-review confirmation:** [x] make check passes  [x] make test-unit passes
 
-**Self-review:**
-- [x] I reviewed the complete pull-request diff.
-- [x] My contribution introduces no new test or lint failures.
+The full repository checks contain 182 pre-existing Ruff errors and 53 pre-existing unit-test failures. I reproduced the same results on `upstream/main`, confirming that this branch introduces no new failures.
+
+**Draft PR feedback received from:** none
