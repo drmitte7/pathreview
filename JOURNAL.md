@@ -67,3 +67,34 @@ I added `tests/integration/test_rag_pipeline.py`. It verifies vector and BM25 re
 The full repository checks contain 182 pre-existing Ruff errors and 53 pre-existing unit-test failures. I reproduced the same results on `upstream/main`, confirming that this branch introduces no new failures.
 
 **Draft PR feedback received from:** none
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [x] No — still awaiting review
+
+**Summary of feedback:**
+No reviewer or maintainer feedback was received on my pull request before completing this reflection. My PR remains open and ready for review, but no additional changes were requested.
+
+**How you responded:**
+Since no reviewer feedback was received, I did not need to make any additional code changes or responses. I left the pull request open and ready for future review.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+The hardest part was not writing the integration test itself, but understanding how all of the existing RAG components connect together. For issue #38, I had to work with `VectorStore`, `KeywordSearcher`, `HybridRetriever`, `ReviewGenerator`, and the output parser so that `tests/integration/test_rag_pipeline.py` exercised retrieval, reranking, generation, and parsing as one workflow. Another challenge was distinguishing problems caused by my code from existing repository problems, especially when `make check` reported 182 Ruff errors and `make test-unit` reported 53 failing tests.
+
+**What did you learn about working in a large codebase?**
+I learned that contributing to an existing codebase requires much more attention to scope than working on my own project. Instead of fixing every problem I found, I needed to stay focused on issue #38 and avoid modifying unrelated production files just because they contained lint, type, or test failures. I also learned how important it is to understand the repository's Git workflow, including working on a dedicated branch, rebasing onto `upstream/main`, force-pushing safely with `--force-with-lease`, and keeping the pull request focused.
+
+**How did AI tools help — and where did they fall short?**
+AI tools helped me understand unfamiliar parts of the RAG pipeline, plan the integration test, interpret pytest and Git output, and work through commands for rebasing, committing, and preparing the pull request. AI was also useful for helping me structure the mocked LLM response so the test could run without making a real OpenAI API request. However, I learned that AI suggestions still have to be verified against the actual repository because assumptions about function signatures, existing tests, or project behavior may not always match the current code, so running the code and checking the real test output was essential.
+
+**What would you do differently if you started over?**
+If I started again, I would open the draft pull request earlier so there would be more time for peer or maintainer feedback before the deadline. I would also inspect the interfaces between `HybridRetriever`, `ReviewGenerator`, and the output parser earlier in the process before writing the integration test, which would make implementation more direct. I would continue using a before-and-after testing baseline because comparing my branch with `upstream/main` was very useful for proving that the existing 182 Ruff errors and 53 unit-test failures were not introduced by my contribution.
+
+**What are you most proud of from this module?**
+I am most proud that I completed a real open-source-style contribution from issue selection through planning, implementation, testing, documentation, and pull request submission. My integration test in `tests/integration/test_rag_pipeline.py` successfully exercises the RAG pipeline end to end using deterministic data and a mocked LLM, and the targeted test passes without requiring an external API call. I also became much more comfortable working with Git branches, upstream repositories, rebasing, test failures, and documenting technical decisions in a professional pull request.
